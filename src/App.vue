@@ -7,10 +7,15 @@
 
 <script>
 import MyCard from "./components/MyCard";
+import { stockService } from '@/services/stockService.js'
 
 export default {
   name: 'App',
-  components: { MyCard }
+  components: { MyCard },
+  async created() {
+    this.data = await stockService.fetchData('$AAPL');
+    console.log('Loaded data', this.data);
+  },
 }
 </script>
 
